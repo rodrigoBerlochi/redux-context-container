@@ -1,29 +1,28 @@
-import React, { createContext, Component } from 'react';
-import { connect } from 'react-redux';
-import { capitalize } from 'lodash.capitalize';
+import React, { createContext, Component } from "react";
+import { connect } from "react-redux";
+import { capitalize } from "lodash.capitalize";
 
-export const createMagicTree = (
-  mapStateToProps = null,
-  mapDispatchToProps = null
-) => (domain = '') => {
-  if (mapStateToProps !== null && typeof mapStateToProps !== 'function') {
+export default (mapStateToProps = null, mapDispatchToProps = null) => (
+  domain = ""
+) => {
+  if (mapStateToProps !== null && typeof mapStateToProps !== "function") {
     throw new Error(
-      'Argument: if mapStateToProps is defined it must be a function'
+      "Argument: if mapStateToProps is defined it must be a function"
     );
   }
 
   if (
     mapDispatchToProps !== null &&
-    typeof mapDispatchToProps !== 'function' &&
-    typeof mapDispatchToProps !== 'object'
+    typeof mapDispatchToProps !== "function" &&
+    typeof mapDispatchToProps !== "object"
   ) {
     throw new Error(
-      'Argument: if mapDispatchToProps is defined it must be a function or an object'
+      "Argument: if mapDispatchToProps is defined it must be a function or an object"
     );
   }
 
-  if (typeof domain !== 'string') {
-    throw new Error('Argument: domain must a String');
+  if (typeof domain !== "string") {
+    throw new Error("Argument: domain must a String");
   }
 
   const Context = createContext();

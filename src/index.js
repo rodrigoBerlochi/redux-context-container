@@ -1,3 +1,3 @@
-import { createMagicTree } from './magic-tree.jsx';
+import reduxContextContainer from "./redux-context-container";
 
-export { createMagicTree };
+export default reduxContextContainer;

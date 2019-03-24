@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import TestRenderer from "react-test-renderer";
 import contextContainer from "./redux-context-container";
 
-describe("Redux Magic Tree", () => {
+describe("Redux Context Container", () => {
   test("MapState must be of type function or null", () => {
     const fn = jest.fn();
     expect(() => {

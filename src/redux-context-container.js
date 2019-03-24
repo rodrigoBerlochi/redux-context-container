@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import { connect } from 'react-redux';
-import { capitalize } from 'lodash.capitalize';
+import capitalize from 'lodash.capitalize';
 
 /**
  * We mimic the connect() signature, since internally we will take care of connect()

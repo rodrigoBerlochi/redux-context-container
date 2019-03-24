@@ -37,11 +37,6 @@
     "url": "https://github.com/rodrigoBerlochi/redux-context-container/issues"
   },
   "homepage": "https://github.com/rodrigoBerlochi/redux-context-container#readme",
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "peerDependencies": {
     "react": "~16.8.1",
     "react-redux": "~6.0.0",

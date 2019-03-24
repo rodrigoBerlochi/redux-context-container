@@ -1,0 +1,8 @@
+- Restore and configure    
+"husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+}, Conflict with Eslint rules. 
+
+- Review airbnb linting package. Some rules make no sense in this context. Add rules manually.

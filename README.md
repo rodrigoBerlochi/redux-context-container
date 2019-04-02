@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/redux-context-container.svg?style=flat-square)](https://www.npmjs.com/package/redux-context-container)
 [![npm downloads](https://img.shields.io/npm/dm/redux-context-container.svg?style=flat-square)](https://www.npmjs.com/package/redux-context-container)
-[![code coverage](./badges/badge-lines.svg)](https://www.npmjs.com/package/redux-context-container)
+[(https://github.com/rodrigoBerlochi/redux-context-container/blob/master/.badges/badge-statements.svg)](https://www.npmjs.com/package/redux-context-container)
 
 ## Summary
 

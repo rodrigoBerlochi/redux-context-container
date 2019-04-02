@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1554217574245" clover="3.2.0">
+  <project timestamp="1554217574245" name="All files">
+    <metrics statements="19" coveredstatements="19" conditionals="14" coveredconditionals="14" methods="6" coveredmethods="6" elements="39" coveredelements="39" complexity="0" loc="19" ncloc="19" packages="1" files="1" classes="1"/>
+    <file name="redux-context-container.js" path="/home/rodrigo/Documents/Study/redux-context-container/src/redux-context-container.js">
+      <metrics statements="19" coveredstatements="19" conditionals="14" coveredconditionals="14" methods="6" coveredmethods="6"/>
+      <line num="16" count="11" type="cond" truecount="2" falsecount="0"/>
+      <line num="20" count="10" type="cond" truecount="4" falsecount="0"/>
+      <line num="21" count="1" type="stmt"/>
+      <line num="26" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="31" count="1" type="stmt"/>
+      <line num="36" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="37" count="1" type="stmt"/>
+      <line num="41" count="7" type="stmt"/>
+      <line num="42" count="7" type="stmt"/>
+      <line num="55" count="1" type="stmt"/>
+      <line num="58" count="1" type="stmt"/>
+      <line num="61" count="1" type="stmt"/>
+      <line num="81" count="1" type="stmt"/>
+      <line num="83" count="1" type="stmt"/>
+      <line num="90" count="7" type="stmt"/>
+      <line num="91" count="7" type="stmt"/>
+      <line num="92" count="7" type="stmt"/>
+      <line num="98" count="7" type="stmt"/>
+      <line num="104" count="7" type="stmt"/>
+    </file>
+  </project>
+</coverage>

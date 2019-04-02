@@ -4,6 +4,10 @@
 [![npm downloads](https://img.shields.io/npm/dm/redux-context-container.svg?style=flat-square)](https://www.npmjs.com/package/redux-context-container)
 [![cov statements](https://github.com/rodrigoBerlochi/redux-context-container/blob/master/.badges/badge-statements.svg)](https://www.npmjs.com/package/redux-context-container)
 
+[![cov lines](https://github.com/rodrigoBerlochi/redux-context-container/blob/master/.badges/badge-lines.svg)](https://www.npmjs.com/package/redux-context-container)
+[![cov functions](https://github.com/rodrigoBerlochi/redux-context-container/blob/master/.badges/badge-functions.svg)](https://www.npmjs.com/package/redux-context-container)
+[![cov branches](https://github.com/rodrigoBerlochi/redux-context-container/blob/master/.badges/badge-branches.svg)](https://www.npmjs.com/package/redux-context-container)
+
 ## Summary
 
 ** Work In Progress: not ready to consume **

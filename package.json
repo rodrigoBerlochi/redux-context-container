@@ -1,6 +1,6 @@
 {
   "name": "redux-context-container",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Communicate React components without passing props explicitly.",
   "main": "dist/redux-context-container.js",
   "module": "src/index.js",

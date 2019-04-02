@@ -2,6 +2,8 @@
 
 ## Summary
 
+** Work In Progress: not ready to consume **
+
 With the implementation of Context in React, discussions arised regarding Redux being replaced by React Context. There are great articles about it, that I include in the Further Readings section. There are also poor discussions about this, that sometimes are built on top of a lack of knowledge about React and Redux. 
 
 Context is long-awaited feature of React, and in some use cases it can work pretty well as the State Management approach. Redux, on the other hand, is the defacto State Manager for React applications. And even when you might not need Redux, for thousands of uses cases and big companies around the world, it is still the right answer.

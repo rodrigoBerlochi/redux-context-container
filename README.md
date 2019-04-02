@@ -1,6 +1,6 @@
 # redux-context-container
 
-[![build status](https://img.shields.io/travis/reduxjs/redux-context-container/master.svg?style=flat-square)](https://travis-ci.org/rodrigoBerlochi/redux-context-container)
+[![Build Status](https://travis-ci.org/rodrigoBerlochi/redux-context-container.svg?branch=master)](https://travis-ci.org/rodrigoBerlochi/redux-context-container)
 [![npm version](https://img.shields.io/npm/v/redux-context-container.svg?style=flat-square)](https://www.npmjs.com/package/redux-context-container)
 [![npm downloads](https://img.shields.io/npm/dm/redux-context-container.svg?style=flat-square)](https://www.npmjs.com/package/redux-context-container)
 [![cov statements](https://github.com/rodrigoBerlochi/redux-context-container/blob/master/.badges/badge-statements.svg)](https://www.npmjs.com/package/redux-context-container)

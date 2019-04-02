@@ -73,8 +73,6 @@ describe("Redux Context Container", () => {
       return <div>{props.children}</div>;
     };
 
-    console.log(TestRenderer.create(<Card>{"hola"}</Card>).toJSON());
-
     const Title = props => {
       return <h2>{props.library}</h2>;
     };

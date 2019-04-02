@@ -1,5 +1,9 @@
 # redux-context-container
 
+[![npm version](https://img.shields.io/npm/v/redux-context-container.svg?style=flat-square)](https://www.npmjs.com/package/redux-context-container)
+[![npm downloads](https://img.shields.io/npm/dm/redux-context-container.svg?style=flat-square)](https://www.npmjs.com/package/redux-context-container)
+[![code coverage](./badges/badge-lines.svg)](https://www.npmjs.com/package/redux-context-container)
+
 ## Summary
 
 ** Work In Progress: not ready to consume **

@@ -1,3 +1,6 @@
+'use strict';
+
+const webpack = require('webpack');
 const path = require("path");
 
 module.exports = {
@@ -11,16 +14,16 @@ module.exports = {
   },
   externals: {
     react: {
-      commonjs: "React",
-      commonjs2: "React",
-      amd: "React",
-      root: "_"
+      commonjs: "react",
+      commonjs2: "react",
+      amd: "react",
+      root: "React"
     },
     "react-redux": {
       commonjs: "react-redux",
       commonjs2: "react-redux",
       amd: "react-redux",
-      root: "_"
+      root: "ReactRedux"
     }
   },
   module: {

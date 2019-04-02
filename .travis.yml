@@ -7,4 +7,4 @@ env:
     - REACT=16.8
 sudo: false
 script:
-  - npm test-ci
+  - npm run test-ci

@@ -1,0 +1,11 @@
+{
+  "name": "redux-context-container-example",
+  "version": "1.0.0",
+  "description": "Usage example code",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "MIT"
+}

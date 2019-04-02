@@ -6,5 +6,7 @@ env:
   matrix:
     - REACT=16.8
 sudo: false
+before_script:
+  - npm install
 script:
   - npm run test-ci

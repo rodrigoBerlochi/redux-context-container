@@ -1,3 +1,5 @@
+- create declaration file
+
 - Restore and configure    
 "husky": {
     "hooks": {

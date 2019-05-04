@@ -1,3 +1,5 @@
-import reduxContextContainer from "./redux-context-container";
+import { createContextContainer } from "./redux-context-container";
 
-export default reduxContextContainer;
+export {
+    createContextContainer
+};

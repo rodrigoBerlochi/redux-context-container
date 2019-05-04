@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import capitalize from 'lodash.capitalize';
 
 /**
  * We mimic the connect() signature, since internally we will take care of connect()
@@ -14,7 +15,6 @@ import { connect } from 'react-redux';
  */
 export const createContextContainer = (mapStateToProps, mapDispatchToProps = null) => (domain = '') => {
     // Validations
-    // TODO review docs Redux, mapState cannot be an object?
     if (mapStateToProps !== null && typeof mapStateToProps !== 'function') {
         throw new Error(
         'Argument: if mapStateToProps is defined it must be a function',
@@ -54,7 +54,7 @@ export const createContextContainer = (mapStateToProps, mapDispatchToProps = nul
 
     // set slice from the Redux State as values of this Context-Container
     // they will be available for every children reading the context
-    const ContextContainer = connect(mapState, mapDispatch)(_ContextContainer);
+    const ContextContainer = connect(mapStateToProps, mapDispatchToProps)(_ContextContainer);
 
     // creates a Reader/Consumer of this context-container
     // it sets all the values from this Context as Props of the direct child

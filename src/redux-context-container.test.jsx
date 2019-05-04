@@ -23,11 +23,16 @@ describe("Redux Context Container", () => {
     );
   });
 
-  test("Outer function must accept first or second parameter to be NULL or undefined", () => {
+  test("MapDispatch can be ausent", () => {
     const fn = jest.fn();
     expect(() => {
       createContextContainer(fn)();
     }).not.toThrow();
+  });
+
+  test("mapState can be null and dispatch defined", () => {
+    const fn = jest.fn();
+
     expect(() => {
       createContextContainer(null, fn)();
     }).not.toThrow();
@@ -52,18 +57,18 @@ describe("Redux Context Container", () => {
   });
 
   test("The final returned object must have two key properties with the right dynamic names", () => {
-    const magicTree = createContextContainer(() => {}, null)("profile");
-    expect(magicTree).toHaveProperty("withProfileContext");
-    expect(magicTree).toHaveProperty("ProfileContainer");
+    const container = createContextContainer(() => {}, null)("profile");
+    expect(container).toHaveProperty("withProfileContext");
+    expect(container).toHaveProperty("ProfileContainer");
   });
 
   test("If no domain name is passed property names are default", () => {
-    const magicTree = createContextContainer(() => {}, null)();
-    expect(magicTree).toHaveProperty("withContext");
-    expect(magicTree).toHaveProperty("Container");
+    const container = createContextContainer(() => {}, null)();
+    expect(container).toHaveProperty("withContext");
+    expect(container).toHaveProperty("Container");
   });
 
-  test("WIP. createContextContainer must return two memers", () => {
+  test("createContextContainer must return two memers", () => {
   
     // presentational components :::::::::::::::::::::::::
     const Card = props => {

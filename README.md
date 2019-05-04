@@ -11,47 +11,85 @@
 
 ## Summary
 
-** Work In Progress: not ready to consume **
+** Work In Progress: not ready to consume, v2.0.0**
+Create React Containers that rely on React Context to share properties in a Tree. Get rid of prop-drilling but still leverage the better parts of Redux. Avoid connecting every component to the Redux store. 
 
-With the implementation of Context in React, discussions arised regarding Redux being replaced by React Context. There are great articles about it, that I include in the Further Readings section. There are also poor discussions about this, that sometimes are built on top of a lack of knowledge about React and Redux. 
+## Overview
 
-Context is long-awaited feature of React, and in some use cases it can work pretty well as the State Management approach. Redux, on the other hand, is the defacto State Manager for React applications. And even when you might not need Redux, for thousands of uses cases and big companies around the world, it is still the right answer.
+State Management for React apps is a field plenty of polemics, tools and architectural designs. From the original Flux Architecture by Facebook, to implementations like Redux or Mobx. From middlewares like Thunks to Sagas. From State handle directly by React relaying on setState(), to the disruptive Context API. And we can even find another good options like Unstated. Great articles written by Kent Dodds or Dan Abramov are out there.
 
-React Context as State Manager provides simplicity and a consice code. It lacks however of mechanisms and standards that Redux provides and that stick our application to the Flux architecture (which is part of the React world too). Actions to update the State, Store design for an unidirectional data flow, time travel debugging, redux dev tools, thunks and sagas for async flows, etc. If your are wondering about how to get all that when replacing Redux with Context, you might need Redux. It is a good way to avoid re-inventing the wheel. The study of Redux documentation can tell us the patterns to write more concise and correct Redux applications.
+Redux has given us excellent answers for cases when we need Redux. I'm still stand for Redux. Problems around this library are the result mostly of poor evaluation of the needs (You might not need Redux), as well as poor understanding and reading of the documentation. I've seen Redux-based projects written in a way that is far from the good practices described in the official documentation. I've seen people storing types of data into the State that is not meant to be there.
 
-If it is true that some use cases could work better with just Context and other with Redux, it's also true that some people find a third scenario where Redux and Context could play together. This small library tries to express that architectural concept in a tangible way. And using it you should be able to experiment with that pattern without writing a repetitve code.
+If the project needs Redux and the user has understood how to use it, Redux ships with a lot of solutions well documented and nowaday, standardized in the community. And that means more organized and predictable code.
 
-This library, hence, is and experiment of those concepts expressed at theoretical level. 
+Two antipatterns of Redux have been: 1) connecting EVERY component, and 2) embed Redux in "reusable" components.
+When a reusable component gets mixed with Redux code (or whatever state management code) it is no longer reusable. 
+When every component is connected to the Redux State, we end with a nightmare. The promise of maintenable and predictable code of Flux or Redux, has gone. That's more a design problem that one caused by the library. 
 
-## The Pattern
+Time ago I read a smart article online (link to be added) describing architectures to integrates React apps and their States. One common error is linking a thousand components to the Store :(
 
-Using Redux in our React application results in a Flux architecture, plus a useful central store, a standard and predicatable pattern to trigger changes in our application, techniques to test our code and tools to debug it. 
+The last approach described combined Redux and Context API. The idea is to have a layer of Containers between the layer of the Global State and the Presentational components layers. Usually the UI is composed of several sub-trees organized in a main UI tree. The only layer that is allowed to connect to Redux Store, is the Containers one. They can read an slice of the State and make it available to the whole subtree below it. No matter how deep it is. Logically each subtree of the UI has a common purpose, as each slice of the State share a purpose. It could be observed also in the different reducers implemented, combined in the general one. 
 
-When we add React Context to the previous schema, we get an extra advantage: we can create Containers with the ability to pass properties to their children trees without the need of doing it explicetely. That's an interesting experiment. Until now, the way to avoid props drilling was Redux connect() on each component that needs access to some State attribute. And then to pass required properties down in the tree adding them to each level-component. That's the correct way. 
+Containers in this proposition, make use of React Context API. Each container holds a context whose values are the attributes from the taken form the State. Using Context, we leverage the functionality of Consumers: instead of passing down explicitly every required prop from the higher component in the subtree to each of the components below, we leave each subcomponent to leverage Consumers. When a component nested in the subtree needs to read a value from the state, it can use the consumer to connect to its container, not the Redux Store.
 
-Here we have a second approach. We still use Redux connect() but only for Container components. Each Container implements internally a Context, where the slice of the State defined inside the connect() method, lives accesible for all of the children of that Container, no matter how deep nested they are. Children have access thanks to the Consumer of that Container. 
+To modify values in the Store, subcomponents wrapped in the consumer can get Actions from the Container or from an specific action files. 
 
-The architectural proposal was defined in several layers:
+The benefits of this approach are:
 
-- A Global State layer: the usual Redux Store
+- If your app needs Redux, all the pros of it are there:
+    - global state
+    - actions as a standardized way to perform changes
+    - reducers combined to get a single global state, but handle better in smaller pieces
+    - reducers to centralize operations that actually change the State
+    - a store implementation that protects State of changes out of the rules and notify React of updates
+    - all the Redux performance optimizations
+    - Redux DevTools
+- tracking connections to the Redux store is easier: just Containers can do it
+- passing properties from connected components to deep nested children is easier: components do not read from the parent but from the context using the consumer. We don't need to recall adding or removing properties that are not needed at this level because they are in some far place below. 
 
-- A Containers layer: usual Containers from React-Redux applications. But now each one create a React Context with a slice of the global State. And export a Consumer for the next layer. This layer connects() with Redux Store. 
+## Using redux-context-container
 
-- A root-tree layer: one root component per UI tree. This component's level make use of the Consumer
+This library abstract the process of creating Containers that rely on React Context and connect to a Redux infrastructure. It is a simple process but still repetitive. 
 
-- Presentational components layer: here resides all the also known as dumb components, focused on rendering view fragments and decoupled from the State implementation 
+You creating the Redux implementation for your app: the Store, the Reducers combined in a single one, Actions... Your root is wrapped into the react-redux <Provider store={store}>
+Now we want to create a layer of containers. It might match the reducers already created, if each one of them represents a Domain of the application: a slice of the State and the UI rendering it. Also, a set of Actions will reference that Domain. 
+Then we are ready to create a container for each domain. Things we need to take care: 
+
+- the container has to connect to the store
+- values from the store must be integrated to the Context
+- a Provider must be wrapping all the children of the container
+- a Consumer must be in scope and wrapping all of the Presentational components that read value from the container
+
+redux-context-container takes care of all that. It just need mapStateToProps and mapDispatchToProps as input, and optionally a domain name to indetify the output for this container. The library then returns a Container and high order component that links which ever component with the context. 
+
 
 ## Usage
 ```javascript
 // the lib has a single default export. That is function that creates this
 // special kind of containers
-import createReduxContextContainer from 'redux-context-container';
+import { createContextContainer } from 'redux-context-container';
 
-createReduxContextContainer(mapStateToProps, mapDispatchToProps)('domainname');
+const {
+    NavigationContainer,
+    withContextNavigation,
+} = createContextContainer(mapStateToProps, mapDispatchToProps)('navigation');
+
+const NavigationCard = withContextNavigation(Card);
+
+class SomeSubTree extends Component {
+    ...
+    render() {
+        <NavigationContainer>
+            <NavigationCard />
+        </NavigationContainer>
+    }
+}
 
 ```
-
+See the example directory for a more detailed usage. 
 
 ## Performance and other Considerations
+TODO
 
 ## Further Readings
+TODO

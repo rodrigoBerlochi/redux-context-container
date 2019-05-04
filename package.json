@@ -1,6 +1,6 @@
 {
   "name": "redux-context-container",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Communicate React components without passing props explicitly.",
   "main": "dist/redux-context-container.js",
   "module": "src/index.js",
@@ -32,7 +32,7 @@
     "Properties",
     "Container"
   ],
-  "author": "Rodrigo Berlochi rodrigo.berlochi@gmail.com",
+  "author": "Rodrigo Berlochi, <rodrigo.berlochi@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rodrigoBerlochi/redux-context-container/issues"

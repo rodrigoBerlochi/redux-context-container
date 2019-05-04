@@ -1,6 +1,5 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import capitalize from 'lodash.capitalize';
 
 /**
  * We mimic the connect() signature, since internally we will take care of connect()
@@ -13,96 +12,73 @@ import capitalize from 'lodash.capitalize';
  * @param {Object|null} mapDispatchToProps https://react-redux.js.org/using-react-redux/connect-mapdispatch
  * @returns {Function}
  */
-export default (mapStateToProps = null, mapDispatchToProps = null) => (
-  domain = '',
-) => {
-  // Validations
-  if (mapStateToProps !== null && typeof mapStateToProps !== 'function') {
-    throw new Error(
-      'Argument: if mapStateToProps is defined it must be a function',
-    );
-  }
-
-  if (
-    mapDispatchToProps !== null
-    && typeof mapDispatchToProps !== 'function'
-    && typeof mapDispatchToProps !== 'object'
-  ) {
-    throw new Error(
-      'Argument: if mapDispatchToProps is defined it must be a function or an object',
-    );
-  }
-
-  if (typeof domain !== 'string') {
-    throw new Error('Argument: domain must a String');
-  }
-
-  // React Context creation for this Container
-  const Context = createContext();
-  const { Consumer, Provider } = Context;
-
-  /**
-   * @description HOC wraps easily a Presentational component that
-   * is usually direct child of the corresponding container and
-   * is also parent of a presentational tree (Root tree layer).
-   * Every child of the returned component will get access to
-   * all of the props for this Domain/Container, without need of
-   * passing them explicitly on each level.
-   * @param {React.Component} Component
-   * @returns {React.Component}
-   */
-  function withContext(Component) {
-    return function WrapperComponent(props) {
-      // the new component get all the props passed manually
-      // but also we spread context attributes as properties
-      return (
-        <Consumer>
-          {context => {
-            return <Component {...context} {...props} />;
-          }}
-        </Consumer>
-      );
-    };
-  };
-  
-  /**
-   * Basic scaffolding for a Context-Container
-   * It is a React component that must be able to hangle a Children tree
-   * which is returned wrapped in the Provider that links to the Context specific 
-   * to this Container. 
-   * Each Container conceptually represents a Domain of our app (state slice/UI fragment)
-   * The Context-Container must get all of the properties received (except the children which is
-   * a React tree) and set them as Values for this Context. Those props are taken directly 
-   * from the Redux Store in a next step. 
-   * @see https://redux.js.org/basics/usage-with-react#presentational-and-container-components
-   */
-  class innerContainer extends React.Component {
-    render() {
-      const { children, ...restProps } = this.props;
-
-      return <Provider value={{ ...restProps }}>{children}</Provider>;
+export const createContextContainer = (mapStateToProps, mapDispatchToProps = null) => (domain = '') => {
+    // Validations
+    // TODO review docs Redux, mapState cannot be an object?
+    if (mapStateToProps !== null && typeof mapStateToProps !== 'function') {
+        throw new Error(
+        'Argument: if mapStateToProps is defined it must be a function',
+        );
     }
-  }
 
-  // just for semantic when we have several Containers, 
-  // we use the Domain name to identify exported memebers 
-  // fo this Container
-  const Domain = capitalize(domain);
-  const hocName = `with${Domain}Context`;
-  const containerName = `${Domain}Container`;
+    if (
+        mapDispatchToProps !== null
+        && typeof mapDispatchToProps !== 'function'
+        && typeof mapDispatchToProps !== 'object'
+    ) {
+        throw new Error(
+        'Argument: if mapDispatchToProps is defined it must be a function or an object',
+        );
+    }
 
-  // Now we tale care of binding the created Container 
-  // to the Redux Store, as usual in any Redux app
-  // Users shouldn't need to do it by themselves
-  // just to express required props and dispatch methods
-  const Container = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(innerContainer);
+    if (typeof domain !== 'string') {
+        throw new Error('Argument: domain must a String');
+    }
 
-  // Public API to use on our app
-  return {
-    [hocName]: withContext,
-    [containerName]: Container,
-  };
+    const Context = React.createContext({});
+    // creates a generic container that wraps its children into its own Provider
+    // and pipes remaining properties as Value of the context
+    // except children, all props will be set from the Redux State via connect()
+    // https://redux.js.org/basics/usage-with-react#presentational-and-container-components
+    class _ContextContainer extends React.Component {
+        render() {
+            const {children, ...rest} = this.props;
+
+            return (
+                <Context.Provider value={rest}>
+                    {children}
+                </Context.Provider>
+            );
+        }
+    }
+
+    // set slice from the Redux State as values of this Context-Container
+    // they will be available for every children reading the context
+    const ContextContainer = connect(mapState, mapDispatch)(_ContextContainer);
+
+    // creates a Reader/Consumer of this context-container
+    // it sets all the values from this Context as Props of the direct child
+    // as well as pipes other values passed as props to it when consuming the component
+    function withContext (Component) {
+        return function WrappedComponent (props) {
+            return (
+                <Context.Consumer>
+                    {context => <Component {...context} {...props} />}
+                </Context.Consumer>
+            );
+        }
+    }
+
+    // just for semantics, when we have several Containers, 
+    // we use the Domain name to identify exported memebers 
+    // fo this Container
+    const Domain = capitalize(domain);
+    const hocName = `with${Domain}Context`;
+    const containerName = `${Domain}Container`;
+
+    // public API
+    return {
+        [containerName]: ContextContainer,
+        [hocName]: withContext,
+    }
 };

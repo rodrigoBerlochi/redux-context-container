@@ -11,7 +11,7 @@
 
 ## Summary
 
-** Work In Progress: not ready to consume, v2.0.0**
+** Work In Progress, v2.0.0**
 Create React Containers that rely on React Context to share properties in a Tree. Get rid of prop-drilling but still leverage the better parts of Redux. Avoid connecting every component to the Redux store. 
 
 ## Overview

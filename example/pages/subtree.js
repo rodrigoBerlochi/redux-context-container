@@ -1,9 +1,9 @@
 import { ExampleContainer, withExampleContext } from './container';
 
 // presentational component
-const Header = ({text}) => {
+const Header = ({title}) => {
     return (
-        <h1>{text}</h1>
+        <h1>{title}</h1>
     );
 }
 

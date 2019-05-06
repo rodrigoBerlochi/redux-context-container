@@ -1,12 +1,12 @@
-import { createContextContainer } from '../../dist/redux-context-container';
+import { createContextContainer } from '../../src/index';
 
 // this module implements the library redux-context-container
 // this is specific to each application **and each Container/Domain of it**
 
 const mapState = (state) => ({
-    name: state.members[2].name,
-    capital: state.members[2].capital,
-    map: state.members[2].map,
+    title: state.members[2].name,
+    text: state.members[2].capital,
+    url: state.members[2].map,
 });
 
 // not needed, just for demo purpouses

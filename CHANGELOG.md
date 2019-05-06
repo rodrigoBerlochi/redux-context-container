@@ -1,3 +1,6 @@
+# 2.0.1
+- Full refactor of library
+
 # 1.1.0
 - Add example mini app
 

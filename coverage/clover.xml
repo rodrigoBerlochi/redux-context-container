@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1557012540779" clover="3.2.0">
-  <project timestamp="1557012540779" name="All files">
-    <metrics statements="18" coveredstatements="13" conditionals="13" coveredconditionals="13" methods="6" coveredmethods="2" elements="37" coveredelements="28" complexity="0" loc="18" ncloc="18" packages="1" files="1" classes="1"/>
-    <file name="redux-context-container.js" path="/home/rodrigo/Documents/Study/redux-context-container/src/redux-context-container.js">
-      <metrics statements="18" coveredstatements="13" conditionals="13" coveredconditionals="13" methods="6" coveredmethods="2"/>
-      <line num="16" count="11" type="cond" truecount="2" falsecount="0"/>
-      <line num="18" count="10" type="cond" truecount="4" falsecount="0"/>
+<coverage generated="1565230388061" clover="3.2.0">
+  <project timestamp="1565230388061" name="All files">
+    <metrics statements="18" coveredstatements="18" conditionals="13" coveredconditionals="13" methods="6" coveredmethods="6" elements="37" coveredelements="37" complexity="0" loc="18" ncloc="18" packages="1" files="1" classes="1"/>
+    <file name="redux-context-container.js" path="/home/rberlochi/Repos/redux-context-container/src/redux-context-container.js">
+      <metrics statements="18" coveredstatements="18" conditionals="13" coveredconditionals="13" methods="6" coveredmethods="6"/>
+      <line num="16" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="11" type="cond" truecount="4" falsecount="0"/>
       <line num="19" count="1" type="stmt"/>
-      <line num="24" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="24" count="10" type="cond" truecount="2" falsecount="0"/>
       <line num="29" count="1" type="stmt"/>
-      <line num="34" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="34" count="9" type="cond" truecount="2" falsecount="0"/>
       <line num="35" count="1" type="stmt"/>
-      <line num="38" count="7" type="stmt"/>
-      <line num="45" count="0" type="stmt"/>
-      <line num="47" count="0" type="stmt"/>
-      <line num="57" count="7" type="stmt"/>
-      <line num="63" count="0" type="stmt"/>
-      <line num="64" count="0" type="stmt"/>
-      <line num="66" count="0" type="stmt"/>
-      <line num="75" count="7" type="stmt"/>
-      <line num="76" count="7" type="stmt"/>
-      <line num="77" count="7" type="stmt"/>
-      <line num="80" count="7" type="stmt"/>
+      <line num="38" count="8" type="stmt"/>
+      <line num="45" count="1" type="stmt"/>
+      <line num="47" count="1" type="stmt"/>
+      <line num="57" count="8" type="stmt"/>
+      <line num="63" count="1" type="stmt"/>
+      <line num="64" count="1" type="stmt"/>
+      <line num="66" count="1" type="stmt"/>
+      <line num="75" count="8" type="stmt"/>
+      <line num="76" count="8" type="stmt"/>
+      <line num="77" count="8" type="stmt"/>
+      <line num="80" count="8" type="stmt"/>
     </file>
   </project>
 </coverage>

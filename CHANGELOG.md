@@ -1,3 +1,7 @@
+# 2.0.3
+- Increase and improve UT
+- General cleanup
+
 # 2.0.1
 - Full refactor of library
 
